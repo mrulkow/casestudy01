@@ -1,0 +1,227 @@
+---
+title: 'Stats 250: Case Study 1 Resources'
+author: "Instructional Team"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+## Learning Objectives
+
+1. Run a one-sample z-test for a proportion
+2. Run a one-sample t-test for a mean
+
+
+***
+
+
+## Coding Examples
+
+### Load Packages
+
+Before we get started, be sure to load the following packages. 
+
+```{r load_packages, message = FALSE, warning = FALSE}
+library(ggplot2)
+library(stats250package)
+```
+
+Note: the `stats250package` is a package created by the Stats 250 instructional team! It contains some helpful functions that we will use throughout the semester. 
+
+
+***
+
+
+### One Sample z-test for a Proportion
+
+The city of Ann Arbor, which residents affectionately call "Tree Town", regularly assesses the health of public trees through a project call The Urban Forest. The data set below contains a random sample of 200 trees found in parks around Ann Arbor. Run the code chunks below to load and preview the data. 
+
+```{r read_a2trees}
+load("a2trees_sample.rda")
+```
+
+```{r preview_a2trees}
+head(a2trees)
+```
+
+The variable `Health` categorizes trees as Very Good, Good, Neutral, Bad, or Very Bad. 
+
+After a recent initiative to improve the health of trees, the city would like to assess if more than 30% of trees found in local parks are listed as being in "Good" or "Very Good" health. 
+
+We can use the `table()` function to find how many of the 200 trees are listed as being in "Good" or "Very Good" health.
+
+```{r frequency_table_example}
+table(a2trees$Health)
+```
+
+We see that 16 + 57 = 73 trees fall into these categories.  
+
+To test the idea statistically, we can use the `z.test()` function from our `stats250package`. The code would look like this:
+
+```{r z_test_example}
+z.test(x = 73, n = 200, pi = 0.30, alternative = "greater")
+```
+
+The arguments are as follows:
+
+- `x`: the number of "successes"
+- `n`: the sample size
+- `pi`: the hypothesized proportion (from the null hypothesis)
+- `alternative`: the direction of the alternative hypothesis ("greater", "less", or "two.sided")
+
+The output provides us with:
+
+- a summary of the data and the null probability
+- the z-test statistic and corresponding p-value
+- the alternative hypothesis that was tested
+- a confidence interval (this can be ignored)
+- the sample estimate (or pi_hat)
+
+With a p-value of 0.02243, there is *strong* evidence against the null and in favor of the alternative. Based on the sample, there is *strong* evidence to suggest that over 30% of all trees in local Ann Arbor parks are listed as being in "Good" or "Very Good" health. 
+
+
+***
+
+
+### One Sample t-test for a Mean
+
+The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. A random sample, representative of US adults aged 18+, is provided in the data set below. 
+
+```{r read_nhanes}
+nhanes <- read.csv("nhanes_sample.csv")
+```
+
+```{r preview_nhanes}
+head(nhanes)
+```
+
+The variables include:
+
+- `height`: height (in cm)
+- `weight`: weight (in kg)
+- `BMI`: body mass index (in kg/m^2)
+- `arm`: arm circumference (in cm)
+- `chol`: cholesterol level (in mg)
+- `iron`: iron level (in mg)
+- `hgb`: hemoglobin (in g/deciliter)
+- `caffeine`: caffeine amounts (in mg)
+- `rbcc`: red blood cell count (in millions of cells/microliter)
+- `wbcc`: white blood cell count (in millions of cells/microliter)
+
+In 2010, the average caffeine amount for US adults was reported to be 148 mg. We will use the provided sample to assess if the mean caffeine amount has changed since 2010.
+
+To test this hypothesis, we can use the `t.test()` function in R. The code would look like this:
+
+```{r t_test_example}
+t.test(nhanes$caffeine, mu = 148, alternative = "two.sided")
+```
+
+The arguments are as follows:
+
+- `variable$dataset`: the variable to be tested
+- `mu`: the hypothesized mean (from the null hypothesis)
+- `alternative`: the direction of the alternative hypothesis ("greater", "less", or "two.sided")
+
+The output provides us with:
+
+- the t-test statistic, degrees of freedom, and corresponding p-value
+- the alternative hypothesis that was tested
+- a confidence interval (this can be ignored)
+- the sample estimate (or mu_hat)
+
+With a p-value of 0.1421, there is *not enough* evidence against the null and in favor of the alternative. Based on the sample, there is *not enough* evidence to suggest that the average caffeine amount for US adults has changed (from 148 mg) since 2010.
+
+These are the two new functions you will need to complete the case study. Now is a great time to ask questions! 
+
+
+***
+
+
+## Function Review
+
+In order to complete the case study, you will need some functions from Labs 1 and 2. Instead of navigating back and forth, we have included some coding examples below. These examples will use the `penguins` data set. 
+
+```{r read_penguins}
+penguins <- read.csv("penguins.csv")
+```
+
+### Bar Chart
+
+Create a bar chart to visualize a categorical variable. 
+
+```{r bar_chart_example}
+ggplot(data = penguins, aes(x = species)) + 
+  
+  geom_bar(color = "black", fill = "white") +
+  
+  labs(title = "Figure 1: Bar Chart of Penguin Species",
+       x = "Species",
+       y = "Frequency")
+```
+
+***
+
+### Frequency Tables
+
+Create a frequency table to summarize the counts of a categorical variable.
+
+```{r table_example}
+table(penguins$species)
+```
+
+***
+
+### Histogram
+
+Create a histogram to visualize the distribution of a quantitative variable. 
+
+```{r histogram_example}
+ggplot(data = penguins, aes(x = body_mass_g)) + 
+  
+  geom_histogram(bins = 25, 
+                 color = "black", 
+                 fill = "white") +
+  
+  labs(title = "Figure 2: Histogram of Penguin Body Mass",
+       x = "Body Mass (in grams)",
+       y = "Frequency")
+```
+
+***
+
+### Numerical Summaries
+
+Compute various numerical summaries for a quantitative variable, such as the mean, median, standard deviation, etc. 
+
+```{r mean_example}
+mean(penguins$body_mass_g)
+```
+
+```{r median_example}
+median(penguins$body_mass_g)
+```
+
+```{r standard_deviation_example}
+sd(penguins$body_mass_g)
+```
+
+```{r quantile_example}
+quantile(penguins$body_mass_g)
+```
+
+```{r summary_example}
+summary(penguins$body_mass_g)
+```
+
+Click on the file titled `casestudy01_report.Rmd` to navigate to the case study assignment!
+
+
+

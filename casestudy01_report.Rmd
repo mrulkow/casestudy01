@@ -1,0 +1,214 @@
+---
+title: "Case Study 1 Report"
+author: "Your Name and Partner Name (if applicable)"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+In the bottom right window, click on the file titled `casestudy01_instructions.pdf`. Thoroughly read through the background and assignment instructions in order to complete the case study below. We encourage you to work on this assignment with a partner, but only active lab approach students may submit their work in pairs.
+
+**Note:** only *active* lab Approach students may submit case study assignments with a partner. Your partner must be in the same lab section - and you both must be in attendance during the corresponding lab session. Failure to adhere to these rules will result in a penalty applied to your case study score. Students that submit as a team will receive 2 points of extra credit towards their final case study score.
+
+
+***
+
+
+## Goal
+
+Your professors are particularly interested in the data collected as part of the water tests that led the MDEQ to incorrectly believe the Flint River water was safe to drink. Your task is to use the available data to first replicate the analysis MDEQ conducted when declaring the water safe to drink. Specifically, answer the research question:
+
+- **Research Question A:** *Did more than 10 percent of homes in Flint exceed the EPA action level of 15 ppb?*
+
+Then, conduct a separate analysis that answers a similar research question MDEQ did not answer:
+
+- **Research Question B:** *Was the mean lead level in Flint water (in ppb) above the EPA threshold of 5 ppb?*
+
+Finally, compare and contrast your analyses and state whether your analysis suggests MDEQ is liable for providing false assurances of public safety.
+
+
+
+***
+
+
+## Data
+
+When the source of Flint's water was first moved to the Flint River, the MDEQ took 71 samples from local homes. [Source](https://rss-onlinelibrary-wiley-com.proxy.lib.umich.edu/doi/pdfdirect/10.1111/j.1740-9713.2017.01016.x)
+
+The `FlintWater` data set contains variables recorded for each of these 71 homes. The variables are:
+
+1. `house.id`: an ID number representing the house sampled
+2. `lead`: lead level (measured in parts per billion; ppb) in the water of the house that was sampled
+3. `warning`: an indicator of whether the lead level exceeded the EPA action threshold of 15 ppb (“Above EPA Threshold” or “Below EPA Threshold”) Note: this variable is a binary representation of the quantitative variable `lead`
+
+
+Use the following code chunks to read in and preview the data set. 
+
+```{r read_data}
+load("FlintWater.rda")
+```
+
+```{r preview_data}
+head(FlintWater)
+```
+
+And be sure to load in any necessary packages!
+
+```{r load_packages}
+library(ggplot2)
+library(stats250package)
+```
+
+
+***
+
+\newpage
+
+## Categorical Analysis
+
+Use the following code chunks to complete the analysis for the *categorical* variable in the MDEQ sample (to answer Research Question A). Note: you might not use all of the code chunks below. Feel free to delete excess code chunks or leave them in the document.
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+***
+
+\newpage
+
+## Quantitative Analysis
+
+Use the following code chunks to complete the analysis for the *quantitative* variable in the MDEQ sample (to answer Research Question B). Note: you might not use all of the code chunks below. Feel free to delete excess code chunks or leave them in the document.
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+***
+
+\newpage
+
+## Report
+
+## Introduction
+
+Replace this text with...
+
+
+
+\newpage
+
+
+## Analysis Overview
+
+Replace this text with...
+
+
+
+\newpage
+
+## Discussion
+
+Replace this text with...
+
+
+
+\newpage
+
+## Closing Remarks and Recommendations
+  
+Replace this text with...
+
+
+
+***
+
+\newpage
+
+## Word Count
+
+Self-report the word count of your report by following the steps below:
+
+1. Highlight all of the text in the "Report" section above
+2. In the top toolbar, click Edit > Word Count
+3. Report the value of "Selected words" below
+
+**Word Counts:** Replace this text with your word count
+
+
+***
+
+
+## Submission Instructions
+
+Carefully follow the instructions below to properly submit your completed work.
+
+1. At the top of the document, updated the `author` field (in quotes!). *If you are submitting with a partner*, please include their name in the `author` field as well. Note: both names must appear in the same set of quotes (e.g., "John Smith and Jane Doe"). Do not change any of the other fields (title, date, output) at the top of the document. 
+
+2. Click the **Knit** button.
+
+3. Click on the file titled `casestudy01_report.pdf` in the bottom right window and confirm that your work has knitted properly. 
+
+4. In the bottom right window, check the box next to `casestudy01_report.pdf`
+
+5. Click More > Export. Note: you may see a gear icon instead of "More".
+
+6. Click Download and save the file to your computer. Do not change the name of the file (casestudy01_report.pdf). 
+
+7. Head to Gradescope and navigate to the corresponding assignment. 
+
+8. Click "Submit PDF" and upload your saved `casestudy01_report.pdf` file. 
+
+9. Assign the pages of your document to the corresponding questions in Gradescope.
+
+10. Click "Submit". Confirm that the pages of your document match the corresponding questions in Gradescope.
+
+11. *If you are submitting with a partner*, click on "Group Members" at the bottom of the webpage. Search for your partner's name and click "Add".
+
+**Note:** only *active* lab approach students may submit lab assignments with a partner. Your partner must be in the same lab section - and you both must be in attendance during the corresponding lab session. Failure to adhere to these rules will result in a penalty applied to your lab score. Students that submit as a team will receive 2 points of extra credit towards their final case study score.
+
+**Note:** you can resubmit as many times as needed until the posted deadline.
+
+Congratulations - you have completed the first case study!
+
+
+
+
+
